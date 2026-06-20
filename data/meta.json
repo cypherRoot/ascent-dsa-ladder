@@ -1,0 +1,125 @@
+{
+  "topics": [
+    "Warmups (Java Basics)",
+    "Arrays & Hashing",
+    "Two Pointers",
+    "Sliding Window",
+    "Stack",
+    "Binary Search",
+    "Linked List",
+    "Trees",
+    "Tries",
+    "Heap / Priority Queue",
+    "Backtracking",
+    "Graphs",
+    "Advanced Graphs",
+    "1-D DP",
+    "2-D DP",
+    "Greedy",
+    "Intervals",
+    "Math & Geometry",
+    "Bit Manipulation"
+  ],
+  "patterns": [
+    {
+      "name": "Hashing / Frequency",
+      "cue": "Need O(1) lookup, counts, or 'seen before?' — reach for a hash map/set."
+    },
+    {
+      "name": "Prefix Sum",
+      "cue": "Many range-sum queries, or subarray sums (especially with negatives)."
+    },
+    {
+      "name": "Two Pointers",
+      "cue": "Sorted array, or pair/triplet, or shrink-from-both-ends (palindrome, partition)."
+    },
+    {
+      "name": "Sliding Window",
+      "cue": "Contiguous subarray/substring with a longest/shortest/max-sum condition."
+    },
+    {
+      "name": "Fast & Slow Pointers",
+      "cue": "Linked-list cycle, find middle, or detect a duplicate via cycle."
+    },
+    {
+      "name": "Linked List",
+      "cue": "In-place pointer surgery: reverse, merge, reorder, k-group."
+    },
+    {
+      "name": "Binary Search",
+      "cue": "Sorted input, OR 'minimize the max / maximize the min' (search on answer)."
+    },
+    {
+      "name": "Monotonic Stack",
+      "cue": "Next/previous greater-or-smaller element; histogram-style spans."
+    },
+    {
+      "name": "Stack / Simulation",
+      "cue": "Matching pairs, undo, or evaluate left-to-right with a stack."
+    },
+    {
+      "name": "Tree DFS",
+      "cue": "Recurse the tree; combine answers from left & right subtrees."
+    },
+    {
+      "name": "Tree BFS",
+      "cue": "Level-by-level: level order, right-side view, shortest depth."
+    },
+    {
+      "name": "Trie",
+      "cue": "Prefix queries, word dictionaries, autocomplete."
+    },
+    {
+      "name": "Heap / Top-K",
+      "cue": "'Top K', 'K closest', 'median of a stream', merge K sorted."
+    },
+    {
+      "name": "Backtracking",
+      "cue": "All subsets/permutations/combinations; n is small (<= ~20)."
+    },
+    {
+      "name": "Graph DFS/BFS",
+      "cue": "Grids/graphs: connectivity, islands, flood fill, shortest unweighted path."
+    },
+    {
+      "name": "Topological Sort",
+      "cue": "Ordering with prerequisites / dependencies in a DAG."
+    },
+    {
+      "name": "Union Find",
+      "cue": "Dynamic connectivity, count components, detect cycle in undirected graph."
+    },
+    {
+      "name": "Shortest Path (weighted)",
+      "cue": "Weighted edges: Dijkstra / Bellman-Ford / cheapest-within-K."
+    },
+    {
+      "name": "1-D DP",
+      "cue": "Optimal/count over a sequence with overlapping subproblems."
+    },
+    {
+      "name": "2-D / Grid DP",
+      "cue": "Two changing indices: strings, grids, knapsack-style tables."
+    },
+    {
+      "name": "Greedy",
+      "cue": "Local optimal choice provably leads to global optimum (often after sorting)."
+    },
+    {
+      "name": "Intervals",
+      "cue": "Overlapping ranges: merge, insert, schedule, count rooms."
+    },
+    {
+      "name": "Matrix",
+      "cue": "In-place grid manipulation: rotate, spiral, set-zeroes."
+    },
+    {
+      "name": "Math",
+      "cue": "Number theory, digits, power, overflow tricks."
+    },
+    {
+      "name": "Bit Manipulation",
+      "cue": "XOR cancellation, bit counting, subsets via bitmask."
+    }
+  ]
+}
