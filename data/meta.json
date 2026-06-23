@@ -23,7 +23,11 @@
   "patterns": [
     {
       "name": "Hashing / Frequency",
-      "cue": "Need O(1) lookup, counts, or 'seen before?' — reach for a hash map/set."
+      "cue": "Need O(1) lookup, counts, or 'seen before?' - reach for a hash map/set."
+    },
+    {
+      "name": "Array Basics",
+      "cue": "Simple indexing, traversal, copying, swapping, or accumulating over arrays."
     },
     {
       "name": "Prefix Sum",
@@ -56,6 +60,10 @@
     {
       "name": "Stack / Simulation",
       "cue": "Matching pairs, undo, or evaluate left-to-right with a stack."
+    },
+    {
+      "name": "Queue",
+      "cue": "First-in-first-out processing, recent events, or level/order simulation."
     },
     {
       "name": "Tree DFS",

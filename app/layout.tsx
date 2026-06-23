@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ascent — DSA Interview Ladder",
+  title: "Ascent - DSA Interview Ladder",
   description:
-    "Climb the patterns that actually get asked. A curated DSA ladder — solve on LeetCode/GFG, track your ascent.",
+    "Climb the patterns that actually get asked. A curated DSA ladder - solve on LeetCode/GFG, track your ascent.",
 };
 
 export default function RootLayout({

@@ -7,7 +7,7 @@ const KEY = "ascent.progress.v1";
 /**
  * Per-user solved state lives in localStorage (not a file) so every visitor
  * who opens the shared link tracks their own ascent. Export/import gives a
- * JSON backup you own — insurance against clearing your cache.
+ * JSON backup you own - insurance against clearing your cache.
  */
 export function useProgress() {
   const [solved, setSolved] = useState<Set<number>>(new Set());
@@ -21,7 +21,7 @@ export function useProgress() {
         setSolved(new Set(ids));
       }
     } catch {
-      /* corrupt or unavailable storage — start clean */
+      /* corrupt or unavailable storage - start clean */
     }
     setMounted(true);
   }, []);
@@ -31,7 +31,7 @@ export function useProgress() {
     try {
       localStorage.setItem(KEY, JSON.stringify([...next]));
     } catch {
-      /* storage full / blocked — keep in-memory */
+      /* storage full / blocked - keep in-memory */
     }
   }, []);
 

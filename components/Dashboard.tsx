@@ -28,23 +28,24 @@ export default function Dashboard({
 
   return (
     <section className="border-b border-line">
-      <div className="mx-auto grid max-w-shell grid-cols-1 gap-10 px-5 py-16 md:grid-cols-[1fr_auto] md:items-end md:py-20">
+      <div className="mx-auto grid max-w-shell grid-cols-1 gap-8 px-3 py-10 sm:px-5 sm:py-14 md:grid-cols-[1fr_auto] md:items-end md:py-20">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent sm:text-xs sm:tracking-[0.28em]">
             DSA Interview Ladder
           </p>
-          <h1 className="mt-4 font-display text-5xl font-bold leading-[0.98] tracking-tight text-text sm:text-6xl">
+          <h1 className="mt-3 font-display text-[2.35rem] font-bold leading-[1] tracking-tight text-text sm:mt-4 sm:text-5xl md:text-6xl">
             Climb the patterns
             <br />
             that get asked.
           </h1>
-          <p className="mt-5 max-w-md text-sm leading-relaxed text-muted">
-            173 curated problems — NeetCode 150 plus the Striver-SDE high-frequency
-            set — ordered into rungs. Solve each on LeetCode or GfG, then mark your
-            ascent. Two ladders, one progress: climb by topic or by pattern.
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted sm:mt-5">
+            {total} curated problems - Java warmups, NeetCode 150, and the
+            Striver-SDE high-frequency set - ordered into rungs. Solve each on
+            LeetCode or GfG, then mark your ascent. Study by topic or drill by
+            pattern with the same progress.
           </p>
 
-          <div className="mt-8 grid max-w-lg grid-cols-3 gap-px overflow-hidden rounded-lg border border-line bg-line">
+          <div className="mt-6 grid max-w-lg grid-cols-3 gap-px overflow-hidden rounded-lg border border-line bg-line sm:mt-8">
             <StatCell label="Solved" value={shown} total={total} accent />
             <StatCell label="Core ★" value={mounted ? core.solved : 0} total={core.total} />
             <StatCell
@@ -76,9 +77,9 @@ export default function Dashboard({
         </div>
 
         {/* Signature: vertical elevation gauge */}
-        <div className="flex items-end gap-4">
+        <div className="flex items-end justify-between gap-4 md:justify-end">
           <div className="flex flex-col items-end">
-            <div className="font-display text-4xl font-bold tnum text-text">
+            <div className="font-display text-3xl font-bold tnum text-text sm:text-4xl">
               <CountUp value={shownPct} />
               <span className="text-xl text-muted">%</span>
             </div>
@@ -86,7 +87,7 @@ export default function Dashboard({
               to ready
             </p>
           </div>
-          <div className="relative h-44 w-3 overflow-hidden rounded-full border border-line bg-surface">
+          <div className="relative h-28 w-3 overflow-hidden rounded-full border border-line bg-surface sm:h-44">
             <div
               className="absolute bottom-0 left-0 w-full rounded-full"
               style={{
@@ -124,16 +125,16 @@ function StatCell({
   dim?: boolean;
 }) {
   return (
-    <div className="bg-surface px-4 py-3.5">
+    <div className="min-w-0 bg-surface px-2.5 py-3 sm:px-4 sm:py-3.5">
       <div
-        className={`font-display text-2xl font-semibold tnum ${
+        className={`font-display text-xl font-semibold tnum sm:text-2xl ${
           accent ? "text-accentSoft" : dim ? "text-muted" : "text-text"
         }`}
       >
         <CountUp value={value} />
-        <span className="text-sm text-faint">/{total}</span>
+        <span className="text-xs text-faint sm:text-sm">/{total}</span>
       </div>
-      <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+      <div className="mt-0.5 truncate font-mono text-[9px] uppercase tracking-[0.08em] text-faint sm:text-[10px] sm:tracking-[0.18em]">
         {label}
       </div>
     </div>

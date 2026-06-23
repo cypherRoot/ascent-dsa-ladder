@@ -16,12 +16,16 @@
 
 html {
   scroll-behavior: auto;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
+  min-width: 0;
+  overflow-x: hidden;
   background-color: #0c0d10;
   color: #e8e9ed;
-  /* faint engineering grid — schematic, not loud */
+  /* faint engineering grid - schematic, not loud */
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
@@ -89,7 +93,7 @@ html.lenis body {
   }
 }
 
-/* focus visibility — quality floor */
+/* focus visibility - quality floor */
 :focus-visible {
   outline: 2px solid #7c6cf6;
   outline-offset: 2px;
@@ -98,8 +102,8 @@ html.lenis body {
 
 .checkbox {
   position: relative;
-  height: 22px;
-  width: 22px;
+  height: 24px;
+  width: 24px;
   flex: none;
   border: 1.5px solid #363b45;
   border-radius: 6px;
