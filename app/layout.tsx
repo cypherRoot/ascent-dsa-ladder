@@ -5,6 +5,14 @@ export const metadata: Metadata = {
   title: "Ascent - DSA Interview Ladder",
   description:
     "Climb the patterns that actually get asked. A curated DSA ladder - solve on LeetCode/GFG, track your ascent.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
