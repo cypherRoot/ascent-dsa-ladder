@@ -4,6 +4,25 @@ import { useCallback, useEffect, useState } from "react";
 
 const KEY = "ascent.progress.v1";
 
+function parseProgress(raw: string | null): Set<number> {
+  if (!raw) return new Set();
+
+  const data = JSON.parse(raw);
+  const ids = Array.isArray(data) ? data : data?.solved;
+
+  if (!Array.isArray(ids)) return new Set();
+
+  return new Set(
+    ids
+      .map(Number)
+      .filter((id) => Number.isInteger(id) && id > 0)
+  );
+}
+
+function writeProgress(next: Set<number>) {
+  localStorage.setItem(KEY, JSON.stringify([...next]));
+}
+
 /**
  * Per-user solved state lives in localStorage (not a file) so every visitor
  * who opens the shared link tracks their own ascent. Export/import gives a
@@ -15,36 +34,51 @@ export function useProgress() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(KEY);
-      if (raw) {
-        const ids: number[] = JSON.parse(raw);
-        setSolved(new Set(ids));
-      }
+      setSolved(parseProgress(localStorage.getItem(KEY)));
     } catch {
       /* corrupt or unavailable storage - start clean */
     }
     setMounted(true);
   }, []);
 
-  const persist = useCallback((next: Set<number>) => {
-    setSolved(next);
-    try {
-      localStorage.setItem(KEY, JSON.stringify([...next]));
-    } catch {
-      /* storage full / blocked - keep in-memory */
-    }
+  useEffect(() => {
+    const syncFromAnotherTab = (event: StorageEvent) => {
+      if (event.key !== KEY) return;
+
+      try {
+        setSolved(parseProgress(event.newValue));
+      } catch {
+        setSolved(new Set());
+      }
+    };
+
+    window.addEventListener("storage", syncFromAnotherTab);
+    return () => window.removeEventListener("storage", syncFromAnotherTab);
   }, []);
 
-  const toggle = useCallback(
-    (id: number) => {
-      const next = new Set(solved);
-      next.has(id) ? next.delete(id) : next.add(id);
-      persist(next);
-    },
-    [solved, persist]
-  );
+  const updateProgress = useCallback((buildNext: (current: Set<number>) => Set<number>) => {
+    setSolved((current) => {
+      const next = buildNext(current);
 
-  const reset = useCallback(() => persist(new Set()), [persist]);
+      try {
+        writeProgress(next);
+      } catch {
+        /* storage full / blocked - keep in-memory */
+      }
+
+      return next;
+    });
+  }, []);
+
+  const toggle = useCallback((id: number) => {
+    updateProgress((current) => {
+      const next = new Set(current);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  }, [updateProgress]);
+
+  const reset = useCallback(() => updateProgress(() => new Set()), [updateProgress]);
 
   const exportJson = useCallback(() => {
     const blob = new Blob([JSON.stringify({ solved: [...solved] }, null, 2)], {
@@ -63,16 +97,14 @@ export function useProgress() {
       const reader = new FileReader();
       reader.onload = () => {
         try {
-          const data = JSON.parse(String(reader.result));
-          const ids: number[] = Array.isArray(data) ? data : data.solved;
-          if (Array.isArray(ids)) persist(new Set(ids.map(Number)));
+          updateProgress(() => parseProgress(String(reader.result)));
         } catch {
           /* ignore malformed import */
         }
       };
       reader.readAsText(file);
     },
-    [persist]
+    [updateProgress]
   );
 
   return { solved, mounted, toggle, reset, exportJson, importJson };
